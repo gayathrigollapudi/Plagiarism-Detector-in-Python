@@ -30,7 +30,7 @@ class Bagwords:
 		self.files_list=l
 		le=len(self.files_list)
 		result=[]
-		for i in range(le-1):
+		for i in range(le):
 			result.append([])
 			s=Readfile(l[i])
 			for j in range(le):
@@ -74,7 +74,7 @@ class Stringmatch:
 		self.files_list=l
 		le=len(self.files_list)
 		re=[]
-		for i in range(le-1):
+		for i in range(le):
 			re.append([])
 			s=Readfile(l[i])
 			for j in range(le):
