@@ -8,10 +8,11 @@ class Readfile:
 	def fileread(self,fi):
 		f=open(fi)
 		s=f.read()
-		self.raw_file=s
-		s=s.replace(",",'').replace(".","")
 		s=s.lower()
 		s=self.removespecialchar(s)
+		self.raw_file=s
+		self.char_list=list(s)
+		s=list(s.split())
 		return s
 	def removespecialchar(self,s):
 		st=''
@@ -23,7 +24,7 @@ class Readfile:
 				s1+=(st+i)
 				st=""
 		s1+=st
-		return list(s1.split())
+		return s1
 
 class Bagwords:
 	def __init__(self,l):
@@ -83,7 +84,7 @@ class Stringmatch:
 					re[i].append((s.fname,s1.fname,0))
 				else:
 					l1=[]
-					lcs=self.substr(s.words_list,s1.words_list)
+					lcs=self.substr(s.char_list,s1.char_list)
 					match=((lcs*2)/(len(s.raw_file)+len(s1.raw_file)))*100
 					r=str(round(match,2))+'%'
 					re[i].append((s.fname,s1.fname,r))
@@ -100,6 +101,7 @@ class Stringmatch:
 					i,j=i+1,j+1
 				if len(l)!=0:
 					l="".join(l)
+					l=l.strip()
 					le2=len(l)
 					if lcs<le2:
 						lcs=le2
