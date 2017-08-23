@@ -1,6 +1,9 @@
 class Readfile:
 	def __init__(self,file_name):
 		self.file_name=file_name
+		l=self.file_name.split("\\")
+		i=l[-1][:-4]
+		self.fname=i
 		self.words_list=self.fileread(self.file_name)
 	def fileread(self,fi):
 		f=open(fi)
@@ -31,11 +34,11 @@ class Bagwords:
 			result.append([])
 			s=Readfile(l[i])
 			for j in range(le):
+				s1=Readfile(l[j])
 				if i==j:
-					result[i].append((l[i],l[j],0))
+					result[i].append((s.fname,s1.fname,0))
 				else:
 					l1=[]
-					s1=Readfile(l[j])
 					d=self.frequency(s.words_list)
 					d1=self.frequency(s1.words_list)
 					k=self.euclidean(d)
@@ -44,7 +47,7 @@ class Bagwords:
 					g=self.dotproduct(d,d1)
 					r=round((g/h)*100,2)
 					r=str(r)+'%'
-					result[i].append((l[i],l[j],r))	
+					result[i].append((s.fname,s1.fname,r))	
 		self.result_vector=result
 	def frequency(self,s):
 		d={}
@@ -75,15 +78,15 @@ class Stringmatch:
 			re.append([])
 			s=Readfile(l[i])
 			for j in range(le):
+				s1=Readfile(l[j])
 				if i==j:
-					re[i].append((l[i],l[j],0))
+					re[i].append((s.fname,s1.fname,0))
 				else:
 					l1=[]
-					s1=Readfile(l[j])
 					lcs=self.substr(s.words_list,s1.words_list)
 					match=((lcs*2)/(len(s.raw_file)+len(s1.raw_file)))*100
 					r=str(round(match,2))+'%'
-					re[i].append((l[i],l[j],r))
+					re[i].append((s.fname,s1.fname,r))
 		self.result_vect=re
 	def substr(self,s,s1):
 		le=len(s)
