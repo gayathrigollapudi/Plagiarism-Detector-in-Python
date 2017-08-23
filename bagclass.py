@@ -19,6 +19,7 @@ class Readfile:
 			elif(i==" "):
 				s1+=(st+i)
 				st=""
+		s1+=st
 		return list(s1.split())
 
 class Bagwords:
@@ -64,6 +65,7 @@ class Bagwords:
 			if i in d1:
 				sum+=(d[i]*d1[i])
 		return sum
+
 class Stringmatch:
 	def __init__(self,l):
 		self.files_list=l
