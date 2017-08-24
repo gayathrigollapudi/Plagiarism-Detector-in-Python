@@ -107,7 +107,6 @@ class Stringmatch:
 					if lcs<le2:
 						lcs=le2
 				i=t
-		print(lcs)
 		return lcs
 if __name__=='__main__':
 	import glob
