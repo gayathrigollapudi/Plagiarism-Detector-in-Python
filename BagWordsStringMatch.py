@@ -1,3 +1,4 @@
+#class to read file content
 class Readfile:
 	def __init__(self,file_name):
 		self.file_name=file_name
@@ -5,6 +6,7 @@ class Readfile:
 		i=l[-1][:-4]
 		self.fname=i
 		self.words_list=self.fileread(self.file_name)
+	#Method to open file and read the file content
 	def fileread(self,fi):
 		f=open(fi)
 		s=f.read()
@@ -14,6 +16,7 @@ class Readfile:
 		self.char_list=list(s)
 		s=list(s.split())
 		return s
+	#Method to remove special characters in file content
 	def removespecialchar(self,s):
 		st=''
 		s1=''
@@ -25,7 +28,7 @@ class Readfile:
 				st=""
 		s1+=st
 		return s1
-
+#class to bag of words
 class Bagwords:
 	def __init__(self,l):
 		self.files_list=l
@@ -50,6 +53,7 @@ class Bagwords:
 					r=str(r)+'%'
 					result[i].append((s.fname,s1.fname,r))	
 		self.result_vector=result
+	#Method to find frequency of file content
 	def frequency(self,s):
 		d={}
 		for i in s:
@@ -58,18 +62,20 @@ class Bagwords:
 			else:
 				d[i]+=1
 		return d
+	#Method to find euclidean norm value
 	def euclidean(self,d):
 		sum=0
 		for i in d.values():
 			sum+=(i**2)
 		return sum
+	#Method to find dot product frequencies
 	def dotproduct(self,d,d1):
 		sum=0
 		for i in d:
 			if i in d1:
 				sum+=(d[i]*d1[i])
 		return sum
-
+# class to string matching
 class Stringmatch:
 	def __init__(self,l):
 		self.files_list=l
@@ -89,6 +95,7 @@ class Stringmatch:
 					r=str(round(match,2))+'%'
 					re[i].append((s.fname,s1.fname,r))
 		self.result_vect=re
+	#Method to find longest sub string in file content
 	def substr(self,s,s1):
 		le=len(s)
 		le1=len(s1)
@@ -108,6 +115,7 @@ class Stringmatch:
 						lcs=le2
 				i=t
 		return lcs
+# Main to create objects and find bag of words and string matching
 if __name__=='__main__':
 	import glob
 	import math
